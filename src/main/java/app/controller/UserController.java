@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import app.service.UserService;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Controller
@@ -85,6 +86,12 @@ public class UserController {
         List<User> userList = userService.listAllUsers();
         model.addAttribute("userList", userList);
         return "all-users";
+    }
+
+    @PostConstruct
+    public void makeAdmin() {
+        userService.add(new User("Admin", "admin", "123456",
+                "email@mail.ru", 99, "admin"));
     }
 
 }

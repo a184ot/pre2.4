@@ -4,7 +4,7 @@ package app.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "usertab")
 public class User {
 
     @Id
@@ -14,13 +14,13 @@ public class User {
     @Column(name = "viewName", nullable = false)
     private String viewName;
 
-    @Column(name = "login", unique = true)
+    @Column(name = "login", unique = true, nullable = false, length = 20)
     private String login;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email", nullable = false, length = 30)
     private String email;
 
     @Column(name = "age", nullable = false)
