@@ -4,12 +4,8 @@ import app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import app.service.UserService;
-
 import javax.annotation.PostConstruct;
 import java.util.List;
 
@@ -17,43 +13,43 @@ import java.util.List;
 @RequestMapping("/")
 public class UserController {
 
-    public final UserService userService;
+    private UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    private UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/")
-    public String listUsers(ModelMap model) {
+    private String listUsers(ModelMap model) {
         List<User> userList = userService.listAllUsers();
         model.addAttribute("userList", userList);
         return "all-users";
     }
 
     @PostMapping("/admin")
-    public String listUsersPost(ModelMap model) {
+    private String listUsersPost(ModelMap model) {
         List<User> userList = userService.listAllUsers();
         model.addAttribute("userList", userList);
         return "all-users";
     }
 
     @PostMapping("/update")
-    public String editUsers(@RequestParam String id, ModelMap model) {
-        Long idLong = Long.parseLong(id);
-        User user = userService.getUserById(idLong);
+    private String editUserForm(@ModelAttribute("id") Long id, ModelMap model) {
+        User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return "update";
     }
 
     @PostMapping("/updateUser")
-    public String editUsers2(@RequestParam String id, @RequestParam String viewName,
-                             @RequestParam String login, @RequestParam String password,
-                             @RequestParam String email, @RequestParam String age,
-                             @RequestParam String role, ModelMap model) {
-        Long idLong = Long.parseLong(id);
-        int ageInt = Integer.parseInt(age);
-        User user = new User(idLong, viewName, login, password, email, ageInt, role);
+    private String editedUsersSave(@ModelAttribute("id") Long id,
+                                   @ModelAttribute("viewName") String viewName,
+                                   @ModelAttribute("login") String login,
+                                   @ModelAttribute("password") String password,
+                                   @ModelAttribute("email") String email,
+                                   @ModelAttribute("age") int age,
+                                   @ModelAttribute("role") String role, ModelMap model) {
+        User user = new User(id, viewName, login, password, email, age, role);
         userService.editUser(user);
         List<User> userList = userService.listAllUsers();
         model.addAttribute("userList", userList);
@@ -61,28 +57,25 @@ public class UserController {
     }
 
     @PostMapping("/delete")
-    public String deleteUser(@RequestParam String id, ModelMap model) {
-        Long idLong = Long.parseLong(id);
-        userService.deleteUser(idLong);
+    private String deleteUser(@ModelAttribute("id") Long id, ModelMap model) {
+        userService.deleteUser(id);
         List<User> userList = userService.listAllUsers();
         model.addAttribute("userList", userList);
         return "all-users";
     }
 
     @PostMapping("/create")
-    public String createUser(ModelMap model) {
+    private String createUserForm(ModelMap model) {
         return "create";
     }
 
     @PostMapping("/createUser")
-    public String createNewUser(@RequestParam(value = "viewName", required = true) String viewName,
-                                @RequestParam(value = "login", required = true) String login,
-                                @RequestParam(value = "password", required = true) String password,
-                                @RequestParam(value = "email", required = true) String email,
-                                @RequestParam(value = "age", required = true) String age, ModelMap model) {
-
-        int ageInt = Integer.parseInt(age);
-        userService.add(new User(viewName, login, password, email, ageInt, "user"));
+    private String createNewUser(@ModelAttribute("viewName") String viewName,
+                                 @ModelAttribute("login") String login,
+                                 @ModelAttribute("password") String password,
+                                 @ModelAttribute("email") String email,
+                                 @ModelAttribute("age") int age, ModelMap model) {
+        userService.add(new User(viewName, login, password, email, age, "user"));
         List<User> userList = userService.listAllUsers();
         model.addAttribute("userList", userList);
         return "all-users";

@@ -16,8 +16,12 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-    @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    public UserDaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void add(User user) {
@@ -46,31 +50,25 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User getUserByLogin(String login) {
-        Session session = sessionFactory.openSession();
-        try {
+        try (Session session = sessionFactory.openSession()) {
             Query query = session.createQuery("from User where login= :login");
             query.setParameter("login", login);
             User user = (User) query.uniqueResult();
             return user;
         } catch (Exception r) {
             return null;
-        } finally {
-            session.close();
         }
     }
 
     @Override
     public User getUserById(Long id) {
-        Session session = sessionFactory.openSession();
-        try {
+        try (Session session = sessionFactory.openSession()) {
             Query query = session.createQuery("from User where id= :id");
             query.setParameter("id", id);
             User user = (User) query.uniqueResult();
             return user;
         } catch (Exception r) {
             return null;
-        } finally {
-            session.close();
         }
     }
 
