@@ -10,66 +10,59 @@ import org.springframework.transaction.event.TransactionalEventListener;
 
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionManagement;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
 
-    private SessionFactory sessionFactory;
-
-    @Autowired
-    public UserDaoImp(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public void add(User user) {
-        sessionFactory.getCurrentSession().save(user);
+        entityManager.persist(user);
     }
 
     @Override
     public void deleteUser(Long id) {
         User user = getUserById(id);
-        sessionFactory.getCurrentSession().delete(user);
+        entityManager.remove(user);
     }
 
 
     @Override
     public void editUser(User user) {
-        sessionFactory.getCurrentSession().update(user);
+        entityManager.merge(user);
     }
 
 
     @Override
     @SuppressWarnings("unchecked")
     public List<User> listAllUsers() {
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
-        return query.getResultList();
+        return entityManager.createQuery("from User").getResultList();
     }
+
 
     @Override
     public User getUserByLogin(String login) {
-        try (Session session = sessionFactory.openSession()) {
-            Query query = session.createQuery("from User where login= :login");
-            query.setParameter("login", login);
-            User user = (User) query.uniqueResult();
+        try{
+            User user = entityManager.createQuery(
+                    "SELECT u from User u WHERE u.login = :login", User.class).
+                    setParameter("login", login).getSingleResult();
             return user;
-        } catch (Exception r) {
+        }catch (Exception e) {
             return null;
         }
+
     }
+
 
     @Override
     public User getUserById(Long id) {
-        try (Session session = sessionFactory.openSession()) {
-            Query query = session.createQuery("from User where id= :id");
-            query.setParameter("id", id);
-            User user = (User) query.uniqueResult();
-            return user;
-        } catch (Exception r) {
-            return null;
-        }
+        return entityManager.find(User.class,id);
     }
 
 }

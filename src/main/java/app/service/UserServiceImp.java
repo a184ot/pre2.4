@@ -22,7 +22,8 @@ public class UserServiceImp implements UserService {
     @Transactional
     @Override
     public void add(User user) {
-        if (getUserByLogin(user.getLogin()) == null){
+        String login = user.getLogin();
+        if (getUserByLogin(login) == null){
             userDao.add(user);
         }
     }
@@ -36,17 +37,17 @@ public class UserServiceImp implements UserService {
     public void editUser(User user) {
         userDao.editUser(user);
     }
-    @Transactional(readOnly = true)
+
     @Override
     public List<User> listAllUsers() {
         return userDao.listAllUsers();
     }
-    @Transactional(readOnly = true)
+
     @Override
     public User getUserByLogin(String login) {
         return userDao.getUserByLogin(login);
     }
-    @Transactional(readOnly = true)
+
     @Override
     public User getUserById(Long id) {
         return userDao.getUserById(id);
