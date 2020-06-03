@@ -76,24 +76,16 @@ public class UserController {
                                  @ModelAttribute("email") String email,
                                  @ModelAttribute("age") int age, ModelMap model) {
 
-        User user = new User();
-        user.setViewName(viewName);
-        user.setLogin(login);
-        user.setPassword(password);
-        user.setEmail(email);
-        user.setAge(age);
-        user.setRole("user");
-        userService.add(user);
-        //        userService.add(new User(viewName, login, password, email, age, "user"));
+        userService.add(new User(viewName, login, password, email, age, "user"));
         List<User> userList = userService.listAllUsers();
         model.addAttribute("userList", userList);
         return "all-users";
     }
 
-//    @PostConstruct
-//    public void makeAdmin() {
-//        userService.add(new User("Admin", "admin", "123456",
-//                "email@mail.ru", 99, "admin"));
-//    }
+    @PostConstruct
+    public void makeAdmin() {
+        userService.add(new User("Admin", "admin", "123456",
+                "email@mail.ru", 99, "admin"));
+    }
 
 }
