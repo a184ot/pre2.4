@@ -58,13 +58,13 @@
                     <th>Role:</th>
                     <td>
                         <select name="role">
-                            <c:if test="${user.role == 'user'}">
-                                <option selected value="user">user</option>
-                                <option value="admin">admin</option>
+                            <c:if test="${user.role == 'USER'}">
+                                <option selected value="USER">user</option>
+                                <option value="ADMIN">admin</option>
                             </c:if>
-                            <c:if test="${user.role == 'admin'}">
-                                <option value="user">user</option>
-                                <option selected value="admin">admin</option>
+                            <c:if test="${user.role == 'ADMIN'}">
+                                <option value="USER">user</option>
+                                <option selected value="ADMIN">admin</option>
                             </c:if>
                         </select>
                     </td>

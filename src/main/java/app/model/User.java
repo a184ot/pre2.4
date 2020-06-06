@@ -1,11 +1,15 @@
 package app.model;
 
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Set;
 
 @Entity
-@Table(name = "usertab")
-public class User {
+@Table(name = "users")
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,29 +30,30 @@ public class User {
     @Column(name = "age", nullable = false)
     private int age;
 
-    @Column(name = "role")
-    private String role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> role;
 
     public User() {
     }
 
-    public User(String viewName, String login, String password, String email, int age, String role) {
+    public User(String viewName, String login, String password, String email, int age) {
         this.viewName = viewName;
         this.login = login;
         this.password = password;
         this.email = email;
         this.age = age;
-        this.role = role;
     }
 
-    public User(Long id, String viewName, String login, String password, String email, int age, String role) {
+    public User(Long id, String viewName, String login, String password, String email, int age) {
         this.id = id;
         this.viewName = viewName;
         this.login = login;
         this.password = password;
         this.email = email;
         this.age = age;
-        this.role = role;
     }
 
     public Long getId() {
@@ -75,6 +80,7 @@ public class User {
         this.login = login;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -99,31 +105,45 @@ public class User {
         this.age = age;
     }
 
-    public String getRole() {
+    public Set<Role> getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Set<Role> role) {
         this.role = role;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (!viewName.equals(user.viewName)) return false;
-        if (!login.equals(user.login)) return false;
-        return email.equals(user.email);
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRole();
     }
 
     @Override
-    public int hashCode() {
-        int result = viewName.hashCode();
-        result = 31 * result + login.hashCode();
-        result = 31 * result + email.hashCode();
-        return result;
+    public String getUsername() {
+        return login;
+    }
+
+    public void setUsername(String username) {
+        setLogin(username);
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

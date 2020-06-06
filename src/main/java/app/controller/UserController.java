@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.model.Role;
 import app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import app.service.UserService;
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Set;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
 
     private UserService userService;
@@ -27,7 +29,7 @@ public class UserController {
         return "all-users";
     }
 
-    @PostMapping("/admin")
+    @PostMapping("/user")
     private String listUsersPost(ModelMap model) {
         List<User> userList = userService.listAllUsers();
         model.addAttribute("userList", userList);
@@ -49,43 +51,14 @@ public class UserController {
                                    @ModelAttribute("email") String email,
                                    @ModelAttribute("age") int age,
                                    @ModelAttribute("role") String role, ModelMap model) {
-        User user = new User(id, viewName, login, password, email, age, role);
-        userService.editUser(user);
+        User user = new User(id, viewName, login, password, email, age);
+        String[] roles = {role};
+        userService.editUser(user,roles);
         List<User> userList = userService.listAllUsers();
         model.addAttribute("userList", userList);
         return "all-users";
     }
 
-    @PostMapping("/delete")
-    private String deleteUser(@ModelAttribute("id") Long id, ModelMap model) {
-        userService.deleteUser(id);
-        List<User> userList = userService.listAllUsers();
-        model.addAttribute("userList", userList);
-        return "all-users";
-    }
 
-    @PostMapping("/create")
-    private String createUserForm(ModelMap model) {
-        return "create";
-    }
-
-    @PostMapping("/createUser")
-    private String createNewUser(@ModelAttribute("viewName") String viewName,
-                                 @ModelAttribute("login") String login,
-                                 @ModelAttribute("password") String password,
-                                 @ModelAttribute("email") String email,
-                                 @ModelAttribute("age") int age, ModelMap model) {
-
-        userService.add(new User(viewName, login, password, email, age, "user"));
-        List<User> userList = userService.listAllUsers();
-        model.addAttribute("userList", userList);
-        return "all-users";
-    }
-
-    @PostConstruct
-    public void makeAdmin() {
-        userService.add(new User("Admin", "admin", "123456",
-                "email@mail.ru", 99, "admin"));
-    }
 
 }
