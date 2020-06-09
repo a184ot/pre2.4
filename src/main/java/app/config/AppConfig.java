@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 
-@EnableJpaRepositories(basePackages = "app.dao")
+@EnableJpaRepositories(basePackages = "app")
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
