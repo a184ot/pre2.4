@@ -16,12 +16,12 @@ public class AdminController {
     private UserService userService;
 
     @Autowired
-    public AdminController(UserService userService) {
+    private AdminController(UserService userService) {
         this.userService = userService;
     }
 
     @Autowired
-    RoleService roleService;
+    private RoleService roleService;
 
 
     @GetMapping("/admin")

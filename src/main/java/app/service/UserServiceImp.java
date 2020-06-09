@@ -15,7 +15,7 @@ public class UserServiceImp implements UserService {
     private UserDao userDao;
 
     @Autowired
-    public UserServiceImp(UserDao userDao) {
+    private UserServiceImp(UserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -23,7 +23,7 @@ public class UserServiceImp implements UserService {
     private RoleService roleService;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
 
 

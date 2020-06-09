@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
 public class LoginController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
 
     @GetMapping(name = "/")
