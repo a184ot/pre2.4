@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="pre2.4" />
+        <module name="pre3.1.1" />
       </profile>
     </annotationProcessing>
   </component>
