@@ -57,16 +57,26 @@
                 <tr>
                     <th>Role:</th>
                     <td>
-                        <select name="role">
-                            <c:if test="${user.role == 'USER'}">
-                                <option selected value="USER">user</option>
-                                <option value="ADMIN">admin</option>
-                            </c:if>
-                            <c:if test="${user.role == 'ADMIN'}">
-                                <option value="USER">user</option>
-                                <option selected value="ADMIN">admin</option>
-                            </c:if>
+<%--                            <c:if test="${rolesuser.equals(' ROLE_USER')}">--%>
+<%--                                <option selected value="ROLE_USER">user</option>--%>
+<%--                                <option value="ROLE_ADMIN">admin</option>--%>
+<%--                            </c:if>--%>
+<%--                            <c:if test="${roles == 'ROLE_ADMIN'}">--%>
+<%--                                <option value="ROLE_USER">user</option>--%>
+<%--                                <option selected value="ROLE_ADMIN">admin</option>--%>
+<%--                            </c:if>--%>
+<%--                            <option selected value="ROLE_USER">user</option>--%>
+<%--                            <option value="ROLE_ADMIN">admin</option>--%>
+
+                        <select name="role" multiple>
+                            <c:forEach var="role" items="${rolesuser}">
+                                <option value="<c:out value="${role}"/>">
+                                    <c:out value="${role}"/></option>
+                            </c:forEach>
                         </select>
+
+
+
                     </td>
                 </tr>
 
@@ -84,13 +94,18 @@
         <caption><h2>Admin Actions</h2></caption>
         <tr>
             <th align="left">
-                <form action="admin" method="post">
+                <form action="admin" method="get">
                     <button name="" value="">List All Users</button>
                 </form>
             </th>
             <th align="left">
                 <form action="create" method="post">
                     <button name="" value="">Add New User</button>
+                </form>
+            </th>
+            <th align="left">
+                <form action="logout" method="post">
+                    <button name="" value="">Logout</button>
                 </form>
             </th>
         </tr>

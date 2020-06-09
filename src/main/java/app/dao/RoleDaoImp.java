@@ -1,7 +1,6 @@
 package app.dao;
 
 import app.model.Role;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -15,7 +14,6 @@ public class RoleDaoImp implements RoleDao{
     private EntityManager entityManager;
 
 
-
     @Override
     public List<Role> getRole() {
         return entityManager.createQuery("from Role").getResultList();
@@ -23,6 +21,14 @@ public class RoleDaoImp implements RoleDao{
 
     @Override
     public Role getRoleByName(String roleName) {
-        return entityManager.find(Role.class, roleName);
+        try{
+            Role role =
+                    entityManager.createQuery(
+                    "SELECT u from Role u WHERE u.name = :name", Role.class).
+                    setParameter("name", roleName).getSingleResult();
+            return role;
+        }catch (Exception e) {
+            return null;
+        }
     }
 }

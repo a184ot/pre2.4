@@ -27,7 +27,10 @@
                 <td><c:out value="${user.password}"/></td>
                 <td><c:out value="${user.email}"/></td>
                 <td><c:out value="${user.age}"/></td>
-                <td><c:out value="${user.role}"/></td>
+                <td><c:forEach var="role" items="${user.role}">
+                    <option value="<c:out value="${role}"/>"><c:out value="${role}"/></option>
+                </c:forEach>
+                </td>
                 <td>
                     <form action="update" method="post">
                         <button name="id" value="<c:out value='${user.id}'/>">Edit</button>
@@ -38,6 +41,7 @@
                         <button name="id" value="<c:out value='${user.id}'/>">Delete</button>
                     </form>
                 </td>
+
             </tr>
         </c:forEach>
     </table>
@@ -55,6 +59,16 @@
             <th align="left">
                 <form action="create" method="post">
                     <button name="" value="">Add New User</button>
+                </form>
+            </th>
+            <th align="left">
+                <form action="user" method="get">
+                    <button name="" value="">User page</button>
+                </form>
+            </th>
+            <th align="left">
+                <form action="logout" method="post">
+                    <button name="" value="">Logout</button>
                 </form>
             </th>
         </tr>

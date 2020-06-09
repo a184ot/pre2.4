@@ -9,24 +9,31 @@
     <table width="80%">
         <caption><h2>My data list</h2></caption>
         <tr>
-            <th align="left">ID</th>
-            <th align="left">Name</th>
-            <th align="left">Password</th>
-            <th align="left">Age</th>
-            <th align="left">Email</th>
-            <th align="left">Role</th>
-            <%--            <th align="left">Actions</th>--%>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>E-mail</th>
+            <th>Age</th>
+            <th>Role</th>
+            <th>Action1</th>
+            <th>Action2</th>
         </tr>
-
-        <c:forEach var="user" items="${listUser}">
-            <tr>
-                <td><c:out value="${user.id}"/></td>
-                <td><c:out value="${user.name}"/></td>
-                <td><c:out value="${user.password}"/></td>
-                <td><c:out value="${user.age}"/></td>
-                <td><c:out value="${user.email}"/></td>
-                <td><c:out value="${user.role}"/></td>
-            </tr>
+        <c:forEach var="user" items="${userList}">
+        <tr>
+            <td><c:out value="${user.id}"/></td>
+            <td><c:out value="${user.viewName}"/></td>
+            <td><c:out value="${user.login}"/></td>
+            <td><c:out value="${user.password}"/></td>
+            <td><c:out value="${user.email}"/></td>
+            <td><c:out value="${user.age}"/></td>
+<%--            <td><c:out value="${user.role}"/></td>--%>
+            <td><c:forEach var="role" items="${user.role}">
+                <option value="<c:out value="${role}"/>"><c:out value="${role}"/></option>
+            </c:forEach>
+            </td>
+            <td>
+        </tr>
         </c:forEach>
     </table>
 </div>
@@ -35,7 +42,7 @@
     <table>
         <caption><h2>Actions</h2></caption>
         <tr>
-            <c:if test="${role == 'admin'}">
+            <c:if test="${role.contains('ADMIN')}">
             <th align="left">
                 <form action="admin" method="post">
                     <button name="" value="">List All Users</button>
@@ -50,6 +57,11 @@
             <th align="left">
                 <form action="logout" method="post">
                     <button name="" value="">Logout</button>
+                </form>
+            </th>
+            <th align="left">
+                <form action="admin" method="get">
+                    <button name="" value="">Admin</button>
                 </form>
             </th>
         </tr>

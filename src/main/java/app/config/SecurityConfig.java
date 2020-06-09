@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import app.config.handler.LoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -33,12 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication().withUser("ADMIN").password("ADMIN").roles("ADMIN");
-////                .inMemoryAuthentication().withUser("ADMIN").password("ADMIN").roles("ADMIN");
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

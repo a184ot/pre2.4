@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class RoleServiceImp implements RoleService {
 
+
     RoleDao roleDao;
 
     @Autowired
@@ -25,5 +26,6 @@ public class RoleServiceImp implements RoleService {
     @Override
     public Role getRoleByName(String roleName) {
         return roleDao.getRoleByName(roleName);
+
     }
 }
