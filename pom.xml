@@ -15,12 +15,32 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <springSecurity.version>5.2.0.RELEASE</springSecurity.version>
         <spring.version>5.2.6.RELEASE</spring.version>
+        <springboot.version>2.0.0.RELEASE</springboot.version>
     </properties>
 
 
     <dependencies>
 
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>
