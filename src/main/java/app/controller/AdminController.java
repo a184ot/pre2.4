@@ -64,4 +64,9 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    @GetMapping("/error")
+    private String error() {
+        return "error";
+    }
+
 }

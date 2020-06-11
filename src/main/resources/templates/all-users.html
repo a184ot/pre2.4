@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns: th="http://www.thymeleaf.org">
+<html xmlns: xmlns:th="http://www.w3.org/1999/xhtml" th="http://www.thymeleaf.org">
 <head>
     <title>UserList</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
@@ -19,30 +19,30 @@
             <th>Action1</th>
             <th>Action2</th>
         </tr>
-        <c:forEach var="user" items="${userList}">
-            <tr>
-                <td><c:out value="${user.id}"/></td>
-                <td><c:out value="${user.viewName}"/></td>
-                <td><c:out value="${user.login}"/></td>
-                <td><c:out value="${user.password}"/></td>
-                <td><c:out value="${user.email}"/></td>
-                <td><c:out value="${user.age}"/></td>
-                <td><c:forEach var="role" items="${user.role}">
-                    <option value="<c:out value="${role}"/>"><c:out value="${role}"/></option>
+        <tr th:each="user : ${userList}">
+            <td th:utext="${user.id}"></td>
+            <td th:utext="${user.viewName}"></td>
+            <td th:utext="${user.login}"></td>
+            <td th:utext="${user.password}"></td>
+            <td th:utext="${user.email}"></td>
+            <td th:utext="${user.age}"></td>
+            <td th:each ="role : ${user.role}">
+                <option value="th:utext=${role}"/>
+                <th:utext=value="${role}"/></option>
                 </c:forEach>
-                </td>
-                <td>
-                    <form action="update" method="post">
-                        <button name="id" value="<c:out value='${user.id}'/>">Edit</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="delete" method="post">
-                        <button name="id" value="<c:out value='${user.id}'/>">Delete</button>
-                    </form>
-                </td>
+            </td>
+            <td>
+                <form action="update" method="post">
+                    <button name="id" value="${user.login}">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form action="delete" method="post">
+                    <button name="id" value="<c:out value='${user.id}'/>">Delete</button>
+                </form>
+            </td>
 
-            </tr>
+        </tr>
         </c:forEach>
     </table>
 </div>
