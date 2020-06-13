@@ -31,31 +31,17 @@
                     <span th:text="${role}"></span>
                 </p>
             </td>
-
-<!--            <td><a th:href="@{'admin/update/' + ${user.id}}">Edit</a></td>-->
-<!--            <td><a th:href="@{'admin/delete/' + ${user.id}}">Delete</a></td>-->
-
-<!--            <td>-->
-<!--                <form action="update" method="post">-->
-<!--                    <button name="id" value="${user.id}">Edit</button>-->
-<!--                </form>-->
-<!--            </td>-->
-
             <td>
-            <form th:action="@{update}" th:object="${user.id}" method="post">
-                <input type="hidden" th:field="${user.id}" />
-                <button type="submit">Delete</button>
-            </form>
-            </td>
-
-            <td>
-                <form action="delete" method="post">
-                    <button name="id" value="${user.id}">Delete</button>
+                <form action="update" method="post">
+                    <button th:name="id" th:value="${user.id}">Edit</button>
                 </form>
             </td>
-
+            <td>
+                <form action="delete" method="post">
+                    <button th:name="id" th:value="${user.id}">Delete</button>
+                </form>
+            </td>
         </tr>
-        </c:forEach>
     </table>
 </div>
 <hr>
