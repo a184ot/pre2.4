@@ -6,7 +6,7 @@
 </head>
 <body>
 <div align="center">
-    <table width="80%">
+    <table border="3" width="80%">
         <caption><h2>My data list</h2></caption>
         <tr>
             <th>Id</th>
@@ -16,8 +16,6 @@
             <th>E-mail</th>
             <th>Age</th>
             <th>Role</th>
-            <th>Action1</th>
-            <th>Action2</th>
         </tr>
         <tr th:each="user : ${userList}">
             <td th:utext="${user.id}"></td>
@@ -26,15 +24,12 @@
             <td th:utext="${user.password}"></td>
             <td th:utext="${user.email}"></td>
             <td th:utext="${user.age}"></td>
-            <td th:each ="role : ${user.role}">
-                <%--            <td><c:out value="${user.role}"/></td>--%>
-            <td><c:forEach var="role" items="${user.role}">
-                <option value="<c:out value="${role}"/>"><c:out value="${role}"/></option>
-            </c:forEach>
-            </td>
             <td>
+                <p th:each="role : ${user.role}">
+                    <span th:text="${role}"></span>
+                </p>
+            </td>
         </tr>
-        </c:forEach>
     </table>
 </div>
 <hr>
@@ -42,27 +37,20 @@
     <table>
         <caption><h2>Actions</h2></caption>
         <tr>
-            <c:if test="${role.contains('ADMIN')}">
                 <th align="left">
-                    <form action="admin" method="post">
-                        <button name="" value="">List All Users</button>
+                    <form action="admin" method="get">
+                        <button>List All Users</button>
                     </form>
                 </th>
-                <th align="left">
-                    <form action="create" method="post">
-                        <button name="" value="">Add New User</button>
-                    </form>
-                </th>
-            </c:if>
-            <th align="left">
-                <form action="logout" method="post">
-                    <button name="" value="">Logout</button>
-                </form>
-            </th>
             <th align="left">
                 <form action="admin" method="get">
-                    <button name="" value="">Admin</button>
+                    <button>Admin</button>
                 </form>
+            <th align="left">
+                <form action="logout" method="post">
+                    <button>Logout</button>
+                </form>
+            </th>
             </th>
         </tr>
     </table>

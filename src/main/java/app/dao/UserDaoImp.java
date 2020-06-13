@@ -25,7 +25,6 @@ public class UserDaoImp implements UserDao {
         this.roleService = roleService;
     }
 
-
     @Override
     public void add(User user) {
         entityManager.persist(user);
@@ -37,19 +36,16 @@ public class UserDaoImp implements UserDao {
         entityManager.remove(user);
     }
 
-
     @Override
     public void editUser(User user) {
         entityManager.merge(user);
     }
-
 
     @Override
     @SuppressWarnings("unchecked")
     public List<User> listAllUsers() {
         return entityManager.createQuery("from User").getResultList();
     }
-
 
     @Override
     public User getUserByLogin(String login) {

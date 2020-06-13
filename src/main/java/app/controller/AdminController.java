@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-
 @Controller
 public class AdminController {
 
@@ -23,7 +22,6 @@ public class AdminController {
     @Autowired
     RoleService roleService;
 
-
     @GetMapping("/admin")
     private String userList(Model model) {
         model.addAttribute("userList", userService.listAllUsers());
@@ -36,7 +34,6 @@ public class AdminController {
         model.addAttribute("userList", userService.listAllUsers());
         return "all-users";
     }
-
 
     @PostMapping({"/update","admin/update"})
     private String editUserForm(@ModelAttribute("id") Long id, ModelMap model) {
@@ -68,5 +65,4 @@ public class AdminController {
     private String error() {
         return "error";
     }
-
 }

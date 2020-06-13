@@ -25,8 +25,6 @@ public class UserServiceImp implements UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-
-
     @Transactional
     @Override
     public boolean add(User user, String[] roles) {
@@ -79,5 +77,4 @@ public class UserServiceImp implements UserService {
     public User getUserById(Long id) {
         return userDao.getUserById(id);
     }
-
 }
