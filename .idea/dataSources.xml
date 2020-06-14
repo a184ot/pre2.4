@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db_example@localhost" uuid="e1f43ef4-6bab-48bd-8dee-33d7d568f117">
+    <data-source source="LOCAL" name="db_next@localhost" uuid="e1f43ef4-6bab-48bd-8dee-33d7d568f117">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/db_example</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/db_next</jdbc-url>
       <driver-properties>
         <property name="serverTimezone" value="UTC" />
       </driver-properties>
