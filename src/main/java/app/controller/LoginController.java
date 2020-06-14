@@ -25,7 +25,7 @@ public class LoginController {
     private void firstUser() {
         User user = new User("admin2","admin2", "123456","q@qq.q",33);
         if (userService.getUserByLogin(user.getLogin())==null) {
-            String role[] = new String[]{"ROLE_ADMIN"};
+            String role[] = new String[]{"ROLE_USER", "ROLE_ADMIN"};
             userService.add(user, role);
         }
     }
