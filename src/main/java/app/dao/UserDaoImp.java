@@ -48,12 +48,12 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public User getUserByLogin(String login) {
+    public User getUserByLogin(String email) {
         try{
             User user = entityManager
                     .createQuery(
-                    "SELECT u from User u WHERE u.login = :login", User.class).
-                    setParameter("login", login).getSingleResult();
+                    "SELECT u from User u WHERE u.email = :email", User.class).
+                    setParameter("email", email).getSingleResult();
             return user;
         }catch (Exception e) {
             return null;

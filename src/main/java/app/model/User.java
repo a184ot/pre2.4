@@ -15,20 +15,20 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "viewName", nullable = false)
-    private String viewName;
+    @Column(name = "first_name", nullable = false, length = 30)
+    private String firstName;
 
-    @Column(name = "login", unique = true, nullable = false, length = 20)
-    private String login;
-
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "email", nullable = false, length = 30)
-    private String email;
+    @Column(name = "last_name",  nullable = false, length = 30)
+    private String lastName;
 
     @Column(name = "age", nullable = false)
     private int age;
+
+    @Column(name = "email", unique = true, nullable = false, length = 30)
+    private String email;
+
+    @Column(name = "password", nullable = false, length = 60)
+    private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
@@ -39,21 +39,21 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String viewName, String login, String password, String email, int age) {
-        this.viewName = viewName;
-        this.login = login;
-        this.password = password;
-        this.email = email;
+    public User(String firstName, String lastName, int age, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
+        this.email = email;
+        this.password = password;
     }
 
-    public User(Long id, String viewName, String login, String password, String email, int age) {
+    public User(Long id, String firstName, String lastName, int age, String email, String password) {
         this.id = id;
-        this.viewName = viewName;
-        this.login = login;
-        this.password = password;
-        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
+        this.email = email;
+        this.password = password;
     }
 
     public Long getId() {
@@ -64,20 +64,20 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getViewName() {
-        return viewName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setViewName(String viewName) {
-        this.viewName = viewName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLogin() {
-        return login;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
@@ -120,11 +120,11 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return email;
     }
 
-    public void setUsername(String username) {
-        setLogin(username);
+    public void setUsername(String email) {
+        setEmail(email);
     }
 
     @Override
