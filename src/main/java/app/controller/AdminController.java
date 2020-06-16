@@ -49,7 +49,12 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping({"/create","admin/create"})
+//    @PostMapping({"/create","admin/create"})
+//    private String createUserPage(ModelMap modelMap) {
+//        return "create";
+//    }
+
+    @GetMapping({"/create","admin/create"})
     private String createUserPage(ModelMap modelMap) {
         return "create";
     }
