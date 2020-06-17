@@ -30,11 +30,7 @@ public class AdminController {
     private String userList(Model model) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getUserByLogin(userName);
-        List<User> listUser = new ArrayList<>();
-        listUser.add(user);
-        model.addAttribute("rolesuser", roleService.getRoles());
         model.addAttribute("adminList", user);
-
         model.addAttribute("userList", userService.listAllUsers());
         return "all-users";
     }
