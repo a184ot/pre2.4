@@ -38,8 +38,7 @@ public class AdminController {
     @PostMapping({"delete","admin/delete"})
     private String  deleteUser(@ModelAttribute("id") Long id, Model model) {
         userService.deleteUser(id);
-        model.addAttribute("userList", userService.listAllUsers());
-        return "all-users";
+        return "redirect:/admin";
     }
 
     @PostMapping({"/update","admin/update"})
