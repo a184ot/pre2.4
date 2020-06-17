@@ -30,7 +30,8 @@
 <!--</nav>-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#"><b>admin@mail.ru</b></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
@@ -52,67 +53,113 @@
 </nav>
 <div class="row">
 
-<div class="col-md-2">
-<p class="bg-primary text-white">Admin</p>
-    <p>User</p>
-</div>
+    <div class="col-md-2">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+               aria-controls="v-pills-home" aria-selected="true">Admin</a>
+            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+               aria-controls="v-pills-profile" aria-selected="false">User</a>
+        </div>
+    </div>
 
-<div class="col-md-10">
-<div align="center">
-    <h3 align="left" class="active">Admin panel</h3>
-    <table class="table table-striped">
+    <div class="col-md-10">
+        <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div align="center">
+                    <h3 align="left" class="active">Admin panel</h3>
+                    <table class="table table-striped">
 
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Users table</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="create">New User</a>
-            </li>
-        </ul>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Users table</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="create">New User</a>
+                            </li>
+                        </ul>
 
 
-        <tr><p align="left" class="font-weight-bold">All users</p></tr>
-        <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>E-mail</th>
-            <th>Role</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        <tr th:each="user : ${userList}">
-            <td th:utext="${user.id}"></td>
-            <td th:utext="${user.firstName}"></td>
-            <td th:utext="${user.lastName}"></td>
-            <td th:utext="${user.age}"></td>
-            <td th:utext="${user.email}"></td>
-            <td class="text-nowrap">
+                        <tr><p align="left" class="font-weight-bold">All users</p></tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Age</th>
+                            <th>E-mail</th>
+                            <th>Role</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        <tr th:each="user : ${userList}">
+                            <td th:utext="${user.id}"></td>
+                            <td th:utext="${user.firstName}"></td>
+                            <td th:utext="${user.lastName}"></td>
+                            <td th:utext="${user.age}"></td>
+                            <td th:utext="${user.email}"></td>
+                            <td class="text-nowrap">
                 <span th:each="role : ${user.role}">
                     <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>
                     <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>
                 </span>
-            </td>
-            <td>
-                <form action="update" method="post" >
-                    <button class="btn btn-info"  th:name="id" th:value="${user.id}">
-                        Edit
-                    </button>
-                </form>
-            </td>
-            <td>
-                <form action="delete" method="post">
-                    <button class="btn btn-danger" th:name="id" th:value="${user.id}">
-                        Delete
-                    </button>
-                </form>
-            </td>
-        </tr>
-    </table>
-</div>
-</div>
+                            </td>
+                            <td>
+                                <form action="update" method="post">
+                                    <button class="btn btn-info" th:name="id" th:value="${user.id}">
+                                        Edit
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="delete" method="post">
+                                    <button class="btn btn-danger" th:name="id" th:value="${user.id}">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+<!--user-->
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div align="center">
+                    <h3 align="left" class="active">User information-page</h3>
+                    <table class="table table-striped">
+
+
+
+
+                        <tr><p align="left" class="font-weight-bold">About user</p></tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Age</th>
+                            <th>E-mail</th>
+                            <th>Role</th>
+                        </tr>
+                        <tr th:each="user : ${adminList}">
+                            <td th:utext="${user.id}"></td>
+                            <td th:utext="${user.firstName}"></td>
+                            <td th:utext="${user.lastName}"></td>
+                            <td th:utext="${user.age}"></td>
+                            <td th:utext="${user.email}"></td>
+                            <td class="text-nowrap">
+                <span th:each="role : ${user.role}">
+                    <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>
+                    <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>
+                </span>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+
+            </div>
+<!--user-->
+        </div>
+    </div>
 </div>
 <hr>
 <div align="center">
@@ -144,8 +191,14 @@
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

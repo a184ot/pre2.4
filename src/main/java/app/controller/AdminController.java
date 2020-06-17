@@ -4,10 +4,14 @@ import app.model.User;
 import app.service.RoleService;
 import app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -24,6 +28,13 @@ public class AdminController {
 
     @GetMapping("/admin")
     private String userList(Model model) {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.getUserByLogin(userName);
+        List<User> listUser = new ArrayList<>();
+        listUser.add(user);
+        model.addAttribute("rolesuser", roleService.getRoles());
+        model.addAttribute("adminList", listUser);
+
         model.addAttribute("userList", userService.listAllUsers());
         return "all-users";
     }
