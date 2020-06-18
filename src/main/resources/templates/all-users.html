@@ -14,27 +14,38 @@
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"><b th:utext="${adminList.getEmail()}"></b></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">User with roles:
-                    <span th:each="role : ${adminList.getRole()}">
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--    <a class="navbar-brand" href="#"><b th:utext="${adminList.getEmail()}"></b></a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"-->
+<!--            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarText">-->
+<!--        <ul class="navbar-nav mr-auto">-->
+<!--            <li class="nav-item active">-->
+<!--                <a class="nav-link" href="#">User with roles:-->
+<!--                    <span th:each="role : ${adminList.getRole()}">-->
+<!--                    <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>-->
+<!--                    <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>-->
+<!--                </span>-->
+<!--                    <span class="sr-only">(current)</span></a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <span class="navbar-text">-->
+<!--      <a class="nav-link text-muted" href="/logout"><small>Logout</small></a>-->
+<!--    </span>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1"><b th:utext="${adminList.getEmail()}"></b>
+    <a>User with roles:
+        <span th:each="role : ${adminList.getRole()}">
                     <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>
                     <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>
-                </span>
-                    <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <span class="navbar-text">
-      <a class="nav-link text-muted" href="/logout"><small>Logout</small></a>
-    </span>
-    </div>
+                </span></span>
+        <span class="sr-only">(current)</span></a>
+    <a class="nav-link text-muted" href="/logout"><small>Logout</small></a>
 </nav>
 
 
@@ -57,13 +68,15 @@
 
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active"  id="v-pills-home2-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                                <a class="nav-link active" id="v-pills-home2-tab" data-toggle="pill"
+                                   href="#v-pills-home" role="tab"
                                    aria-controls="v-pills-create" aria-selected="true">Users table</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="v-pills-create-tab" data-toggle="pill" href="#v-pills-create" role="tab"
+                                <a class="nav-link" id="v-pills-create-tab" data-toggle="pill" href="#v-pills-create"
+                                   role="tab"
                                    aria-controls="v-pills-create" aria-selected="false">New User</a>
-<!--                                <a class="nav-link" href="create">New User</a>-->
+                                <!--                                <a class="nav-link" href="create">New User</a>-->
                             </li>
                         </ul>
 
@@ -143,88 +156,128 @@
                 </div>
             </div>
             <!--user-->
-<!--            new user-->
-            <div  class="tab-pane fade" id="v-pills-create" role="tabpanel" aria-labelledby="v-pills-create-tab">
+            <!--            new user-->
+            <div class="tab-pane fade" id="v-pills-create" role="tabpanel" aria-labelledby="v-pills-create-tab">
                 <div align="center">
                     <h3 align="left" class="active">Admin panel</h3>
                     <table class="table table-striped bg-white">
 
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin">Users table</a>
+                                <a class="nav-link" id="v-pills-home3-tab" data-toggle="pill"
+                                   href="#v-pills-home" role="tab"
+                                   aria-controls="v-pills-create" aria-selected="true">Users table</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">New User</a>
-                                <!--                                <a class="nav-link" href="create">New User</a>-->
+                                <a class="nav-link active" id="v-pills-create-tab" data-toggle="pill"
+                                   href="#v-pills-create"
+                                   role="tab"
+                                   aria-controls="v-pills-create" aria-selected="false">New User</a>
                             </li>
                         </ul>
 
-                        <div class="bg-white">
+                        <div class="container bg-white">
                             <tr><p></p></tr>
                             <tr><p align="left" class="font-weight-bold">Add new user</p></tr>
+                            <div class="container bg-white">
+                                <form action="createUser" method="post">
+                                    <div class="row">
+                                        <div class="col-4"></div>
+                                        <div class="col-4">
+                                            <div align="center" class="form-group">
+                                                <label class="font-weight-bold" for="firstName">FirstName</label>
+                                                <input type="firstName" class="form-control" id="firstName" th:name="firstName" th:id="firstName"/>
+                                            </div>
+                                            <div align="center" class="form-group">
+                                                <label class="font-weight-bold" for="lastName">LastName</label>
+                                                <input type="lastName" class="form-control" id="lastName" th:name="lastName" th:id="lastName"/>
+                                            </div>
+                                            <div align="center" class="form-group">
+                                                <label class="font-weight-bold" for="age">Age</label>
+                                                <input type="age" class="form-control" id="age" th:name="age" th:id="age"/>
+                                            </div>
+                                            <div align="center" class="form-group">
+                                                <label class="font-weight-bold" for="email">E-mail</label>
+                                                <input type="email" class="form-control" id="email" th:name="email" th:id="email"/>
+                                            </div>
+                                            <div align="center" class="form-group">
+                                                <label class="font-weight-bold" for="password">Password</label>
+                                                <input type="password" class="form-control" id="password" th:name="password" th:id="password"/>
+                                            </div>
+                                            <div align="center" class="form-group">
+                                                <button formmethod="post" onclick="location.href='createUser'"  class="btn btn-success">
+                                                    Add new user
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+<!--                                    <table>-->
+<!--                                        <tr>-->
+<!--                                            <th>First Name:</th>-->
+<!--                                            <td>-->
+<!--                                                <input size="45" type="text" th:name="firstName" th:id="firstName"/>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                            <th>Last Name:</th>-->
+<!--                                            <td>-->
+<!--                                                <input size="45" type="text" th:name="lastName" th:id="lastName"/>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                            <th>Age:</th>-->
+<!--                                            <td>-->
+<!--                                                <input size="45" type="text" th:name="age" th:id="age"/>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                            <th>Email:</th>-->
+<!--                                            <td>-->
+<!--                                                <input size="45" type="text" th:name="email" th:id="email"/>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                            <th> Password:</th>-->
+<!--                                            <td>-->
+<!--                                                <input size="45" type="text" th:name="password" th:id="password"/>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                            <td colspan="2" align="center">-->
+<!--                                                <button formmethod="post" onclick="location.href='createUser'"  class="btn btn-success">Add new-->
+<!--                                                    user-->
+<!--                                                </button>-->
 
-                <div align="center">
-                    <form action="createUser" method="post">
-                        <table>
-                            <caption>
-                                <h2>
-                                    Add New User
-                                </h2>
-                            </caption>
-                            <tr>
-                                <th>First Name:</th>
-                                <td>
-                                    <input size="45" type="text"  th:name="firstName" th:id="firstName"/>
-                                </td>
-                            </tr><tr>
-                            <th>Last Name:</th>
-                            <td>
-                                <input size="45" type="text"  th:name="lastName" th:id="lastName"/>
-                            </td>
-                        </tr><tr>
-                            <th>Age:</th>
-                            <td>
-                                <input size="45" type="text"  th:name="age" th:id="age"/>
-                            </td>
-                        </tr>
-                            <tr>
-                                <th>Email:</th>
-                                <td>
-                                    <input size="45" type="text"  th:name="email" th:id="email"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th> Password:</th>
-                                <td>
-                                    <input size="45" type="text"  th:name="password" th:id="password"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" align="center">
-                                    <button formmethod="post" onclick="location.href='createUser'" ;>Save User</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-            </div>
+<!--                                                <form action="update" method="post">-->
+<!--                                                    <button class="btn btn-success" th:name="id" th:value="${user.id}">-->
+<!--                                                        Edit-->
+<!--                                                    </button>-->
+<!--                                                </form>-->
+                                            </td>
+                                        </tr>
+<!--                                    </table>-->
+                                </form>
+                            </div>
+                        </div>
+
                     </table>
                 </div>
+            </div>
+
 
         </div>
     </div>
-</div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 </body>
 </html>
