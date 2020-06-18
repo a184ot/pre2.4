@@ -39,14 +39,25 @@
 
 <nav class="navbar navbar-dark bg-dark">
     <span class="navbar-brand mb-0 h1"><b th:utext="${adminList.getEmail()}"></b>
-    <a>User with roles:
+            <span class="text-white">User with roles:
         <span th:each="role : ${adminList.getRole()}">
                     <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>
                     <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>
-                </span></span>
-        <span class="sr-only">(current)</span></a>
+        </span></span></span></span>
+    <span class="sr-only">(current)</span>
     <a class="nav-link text-muted" href="/logout"><small>Logout</small></a>
 </nav>
+
+<!--<div class="bg-dark text-white">-->
+<!--    <b th:utext="${adminList.getEmail()}"></b>-->
+<!--    <span>User with roles:-->
+<!--        <span th:each="role : ${adminList.getRole()}">-->
+<!--                    <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>-->
+<!--                    <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>-->
+<!--                </span>-->
+
+<!--    <span class="text-muted" href="/logout"><small>Logout</small></span></span>-->
+<!--</div>-->
 
 
 <div class="row">
@@ -186,76 +197,82 @@
                                         <div class="col-4">
                                             <div align="center" class="form-group">
                                                 <label class="font-weight-bold" for="firstName">FirstName</label>
-                                                <input type="firstName" class="form-control" id="firstName" th:name="firstName" th:id="firstName"/>
+                                                <input  style="background-color: #ffeb99" type="firstName" class="form-control" id="firstName"
+                                                       th:name="firstName" th:id="firstName"/>
                                             </div>
                                             <div align="center" class="form-group">
                                                 <label class="font-weight-bold" for="lastName">LastName</label>
-                                                <input type="lastName" class="form-control" id="lastName" th:name="lastName" th:id="lastName"/>
+                                                <input type="lastName" class="form-control" id="lastName"
+                                                       th:name="lastName" th:id="lastName"/>
                                             </div>
                                             <div align="center" class="form-group">
                                                 <label class="font-weight-bold" for="age">Age</label>
-                                                <input type="age" class="form-control" id="age" th:name="age" th:id="age"/>
+                                                <input type="age" class="form-control" id="age" th:name="age"
+                                                       th:id="age"/>
                                             </div>
                                             <div align="center" class="form-group">
                                                 <label class="font-weight-bold" for="email">E-mail</label>
-                                                <input type="email" class="form-control" id="email" th:name="email" th:id="email"/>
+                                                <input type="email" class="form-control" id="email" th:name="email"
+                                                       th:id="email"/>
                                             </div>
                                             <div align="center" class="form-group">
                                                 <label class="font-weight-bold" for="password">Password</label>
-                                                <input type="password" class="form-control" id="password" th:name="password" th:id="password"/>
+                                                <input type="password" class="form-control" id="password"
+                                                       th:name="password" th:id="password"/>
                                             </div>
                                             <div align="center" class="form-group">
-                                                <button formmethod="post" onclick="location.href='createUser'"  class="btn btn-success">
+                                                <button formmethod="post" onclick="location.href='createUser'"
+                                                        class="btn btn-success">
                                                     Add new user
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-<!--                                    <table>-->
-<!--                                        <tr>-->
-<!--                                            <th>First Name:</th>-->
-<!--                                            <td>-->
-<!--                                                <input size="45" type="text" th:name="firstName" th:id="firstName"/>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                            <th>Last Name:</th>-->
-<!--                                            <td>-->
-<!--                                                <input size="45" type="text" th:name="lastName" th:id="lastName"/>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                            <th>Age:</th>-->
-<!--                                            <td>-->
-<!--                                                <input size="45" type="text" th:name="age" th:id="age"/>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                            <th>Email:</th>-->
-<!--                                            <td>-->
-<!--                                                <input size="45" type="text" th:name="email" th:id="email"/>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                            <th> Password:</th>-->
-<!--                                            <td>-->
-<!--                                                <input size="45" type="text" th:name="password" th:id="password"/>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                            <td colspan="2" align="center">-->
-<!--                                                <button formmethod="post" onclick="location.href='createUser'"  class="btn btn-success">Add new-->
-<!--                                                    user-->
-<!--                                                </button>-->
+                                    <!--                                    <table>-->
+                                    <!--                                        <tr>-->
+                                    <!--                                            <th>First Name:</th>-->
+                                    <!--                                            <td>-->
+                                    <!--                                                <input size="45" type="text" th:name="firstName" th:id="firstName"/>-->
+                                    <!--                                            </td>-->
+                                    <!--                                        </tr>-->
+                                    <!--                                        <tr>-->
+                                    <!--                                            <th>Last Name:</th>-->
+                                    <!--                                            <td>-->
+                                    <!--                                                <input size="45" type="text" th:name="lastName" th:id="lastName"/>-->
+                                    <!--                                            </td>-->
+                                    <!--                                        </tr>-->
+                                    <!--                                        <tr>-->
+                                    <!--                                            <th>Age:</th>-->
+                                    <!--                                            <td>-->
+                                    <!--                                                <input size="45" type="text" th:name="age" th:id="age"/>-->
+                                    <!--                                            </td>-->
+                                    <!--                                        </tr>-->
+                                    <!--                                        <tr>-->
+                                    <!--                                            <th>Email:</th>-->
+                                    <!--                                            <td>-->
+                                    <!--                                                <input size="45" type="text" th:name="email" th:id="email"/>-->
+                                    <!--                                            </td>-->
+                                    <!--                                        </tr>-->
+                                    <!--                                        <tr>-->
+                                    <!--                                            <th> Password:</th>-->
+                                    <!--                                            <td>-->
+                                    <!--                                                <input size="45" type="text" th:name="password" th:id="password"/>-->
+                                    <!--                                            </td>-->
+                                    <!--                                        </tr>-->
+                                    <!--                                        <tr>-->
+                                    <!--                                            <td colspan="2" align="center">-->
+                                    <!--                                                <button formmethod="post" onclick="location.href='createUser'"  class="btn btn-success">Add new-->
+                                    <!--                                                    user-->
+                                    <!--                                                </button>-->
 
-<!--                                                <form action="update" method="post">-->
-<!--                                                    <button class="btn btn-success" th:name="id" th:value="${user.id}">-->
-<!--                                                        Edit-->
-<!--                                                    </button>-->
-<!--                                                </form>-->
-                                            </td>
-                                        </tr>
-<!--                                    </table>-->
+                                    <!--                                                <form action="update" method="post">-->
+                                    <!--                                                    <button class="btn btn-success" th:name="id" th:value="${user.id}">-->
+                                    <!--                                                        Edit-->
+                                    <!--                                                    </button>-->
+                                    <!--                                                </form>-->
+                                    </td>
+                                    </tr>
+                                    <!--                                    </table>-->
                                 </form>
                             </div>
                         </div>
