@@ -42,13 +42,13 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping({"/update","admin/update"})
-    private String editUserForm(@ModelAttribute("id") Long id, ModelMap model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
-        model.addAttribute("rolesuser", roleService.getRoles());
-        return "update";
-    }
+//    @PostMapping({"/update","admin/update"})
+//    private String editUserForm(@ModelAttribute("id") Long id, ModelMap model) {
+//        User user = userService.getUserById(id);
+//        model.addAttribute("user", user);
+//        model.addAttribute("rolesuser", roleService.getRoles());
+//        return "update";
+//    }
 
     @PostMapping(value = "/updateUser")
     private String updateUser (User user, String[] role) {
@@ -61,10 +61,10 @@ public class AdminController {
 //        return "create";
 //    }
 
-    @GetMapping({"/create","admin/create"})
-    private String createUserPage(ModelMap modelMap) {
-        return "create";
-    }
+//    @GetMapping({"/create","admin/create"})
+//    private String createUserPage(ModelMap modelMap) {
+//        return "create";
+//    }
 
     @PostMapping({"/createUser", "admin/createUser"})
     private String createNewUser(User user) {
