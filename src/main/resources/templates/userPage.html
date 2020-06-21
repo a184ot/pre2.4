@@ -13,7 +13,6 @@
 </head>
 <body>
 
-
 <nav class="navbar navbar-dark bg-dark">
     <span class="navbar-brand mb-0 h1"><b th:utext="${userList.getEmail()}"></b>
             <span class="text-white">User with roles:
@@ -24,7 +23,6 @@
     <span class="sr-only">(current)</span>
     <a class="nav-link text-muted" href="/logout"><small>Logout</small></a>
 </nav>
-
 <div class="row">
     <div class="col-md-2">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -32,50 +30,41 @@
                aria-controls="v-pills-profile" aria-selected="true">User</a>
         </div>
     </div>
-
     <div class="col-md-10 bg-light">
         <div class="tab-content" id="v-pills-tabContent">
-
             <!--user-->
-<!--                    <div class="container border pl-0">-->
-<!--                        <p align="left" class="font-weight-bold bg-light pl-3">About user</p>-->
-<!--                        <div class="container bg-white border">-->
-<!--                            <table class="table table-striped">-->
-
-            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <h3 align="left" class="active">User information-page</h3>
+            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel"
+                 aria-labelledby="v-pills-profile-tab">
+                <h3 align="left" class="active">User information-page</h3>
                 <div align="center" class="container border pl-0">
-
-                        <p align="left" class="font-weight-bold bg-light pl-3 my-1">About user</p>
+                    <p align="left" class="font-weight-bold bg-light pl-3 my-1">About user</p>
                     <div class="container bg-white border">
-                    <table class="table table-striped">
-                        <tr><p></p></tr>
-                        <tr>
-                            <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Age</th>
-                            <th>E-mail</th>
-                            <th>Role</th>
-                        </tr>
-                        <tr>
-                            <td th:utext="${userList.getId()}"></td>
-                            <td th:utext="${userList.getFirstName()}"></td>
-                            <td th:utext="${userList.getLastName()}"></td>
-                            <td th:utext="${userList.getAge()}"></td>
-                            <td th:utext="${userList.getEmail()}"></td>
-                            <td class="text-nowrap">
-                <span th:each="role : ${userList.getRole()}">
-                    <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>
-                    <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>
-                </span>
-                            </td>
-
-                        </tr>
-                    </table></div>
+                        <table class="table table-striped">
+                            <tr><p></p></tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th>E-mail</th>
+                                <th>Role</th>
+                            </tr>
+                            <tr>
+                                <td th:utext="${userList.getId()}"></td>
+                                <td th:utext="${userList.getFirstName()}"></td>
+                                <td th:utext="${userList.getLastName()}"></td>
+                                <td th:utext="${userList.getAge()}"></td>
+                                <td th:utext="${userList.getEmail()}"></td>
+                                <td class="text-nowrap">
+                                    <span th:each="role : ${userList.getRole()}">
+                                        <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>
+                                        <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-
-
             </div>
             <!--user-->
         </div>
