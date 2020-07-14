@@ -26,7 +26,7 @@ public class LoginController {
         User user = new User("User","Admin", 29,"q@qq.q","123456");
         if (userService.getUserByLogin(user.getEmail())==null) {
             String role[] = new String[]{"ROLE_USER", "ROLE_ADMIN"};
-            userService.add(user, role);
+            userService.add(user);
         }
     }
 }

@@ -25,7 +25,7 @@ public class UserController {
     private String listUsers(ModelMap model) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getUserByLogin(userName);
-        model.addAttribute("userList", user);
+        model.addAttribute("user", user);
         return "userPage";
     }
 }

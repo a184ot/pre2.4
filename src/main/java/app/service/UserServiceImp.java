@@ -27,13 +27,7 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public boolean add(User user, String[] roles) {
-        Set<Role> roleSet = new HashSet<>();
-        for (String role : roles) {
-            Role roleDB = roleService.getRoleByName(role);
-            roleSet.add(roleDB);
-        }
-        user.setRole(roleSet);
+    public boolean add(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.add(user);
         return true;
@@ -41,14 +35,7 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public void editUser(User user, String[] roles) {
-        Set<Role> roleSet = new HashSet<>();
-        Role roleDB;
-        for (String role : roles) {
-            roleDB = roleService.getRoleByName(role);
-            roleSet.add(roleDB);
-        }
-        user.setRole(roleSet);
+    public void editUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.editUser(user);
     }

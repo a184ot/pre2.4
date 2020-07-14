@@ -14,9 +14,9 @@
 <body>
 
 <nav class="navbar navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1"><b th:utext="${adminList.getEmail()}"></b>
+    <span class="navbar-brand mb-0 h1"><b th:utext="${user.getEmail()}"></b>
             <span class="text-white">User with roles:
-        <span th:each="role : ${adminList.getRole()}">
+        <span th:each="role : ${user.getRole()}">
                     <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>
                     <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>
         </span></span></span></span>
@@ -87,7 +87,7 @@
                                          th:attrappend="id=${user.getId()}">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content text-center">
-                                                <form action="#" th:action="@{'/updateUser'}" th:object="${user}"
+                                                <form action="#" th:action="@{'/admin/updateUser'}" th:object="${user}"
                                                       method="POST">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title">Edit user</h5>
@@ -179,7 +179,7 @@
                                          th:attrappend="id=${user.getId()}">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content text-center">
-                                                <form action="#" th:action="@{'/delete'}" th:object="${user}"
+                                                <form action="#" th:action="@{'/admin/delete'}" th:object="${user}"
                                                       method="POST">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title">Edit user</h5>
@@ -277,13 +277,13 @@
                                     <th>Role</th>
                                 </tr>
                                 <tr>
-                                    <td th:utext="${adminList.getId()}"></td>
-                                    <td th:utext="${adminList.getFirstName()}"></td>
-                                    <td th:utext="${adminList.getLastName()}"></td>
-                                    <td th:utext="${adminList.getAge()}"></td>
-                                    <td th:utext="${adminList.getEmail()}"></td>
+                                    <td th:utext="${user.getId()}"></td>
+                                    <td th:utext="${user.getFirstName()}"></td>
+                                    <td th:utext="${user.getLastName()}"></td>
+                                    <td th:utext="${user.getAge()}"></td>
+                                    <td th:utext="${user.getEmail()}"></td>
                                     <td class="text-nowrap">
-                <span th:each="role : ${adminList.getRole()}">
+                <span th:each="role : ${user.getRole()}">
                     <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>
                     <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>
                 </span>
@@ -317,7 +317,7 @@
                             <tr><p></p></tr>
                             <tr><p align="left" class="font-weight-bold">Add new user</p></tr>
                             <div class="container bg-white border">
-                                <form action="createUser" method="post">
+                                <form action="/admin/createUser" method="post">
                                     <div class="row">
                                         <div class="col-4"></div>
                                         <div class="col-4">
@@ -360,7 +360,7 @@
                                                 </select>
                                             </div>
                                             <div align="center" class="form-group">
-                                                <button formmethod="post" onclick="location.href='createUser'"
+                                                <button formmethod="post" onclick="location.href='/admin/createUser'"
                                                         class="btn btn-success">
                                                     Add new user
                                                 </button>
