@@ -32,12 +32,12 @@
                 </p>
             </td>
             <td>
-                <form action="update" method="post">
+                <form action="/admin/update" method="post">
                     <button th:name="id" th:value="${user.id}">Edit</button>
                 </form>
             </td>
             <td>
-                <form action="delete" method="post">
+                <form action="/admin/delete" method="post">
                     <button th:name="id" th:value="${user.id}">Delete</button>
                 </form>
             </td>
@@ -55,7 +55,7 @@
                 </form>
             </th>
             <th align="left">
-                <form action="create" method="post">
+                <form action="/admin/create" method="post">
                     <button>Add New User</button>
                 </form>
             </th>

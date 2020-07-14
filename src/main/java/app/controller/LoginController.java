@@ -13,20 +13,16 @@ import javax.annotation.PostConstruct;
 @RequestMapping(name = "/")
 public class LoginController {
 
+    private UserService userService;
+
     @Autowired
-    UserService userService;
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(name = "/")
     private String Login(){
         return "login";
     }
 
-    @PostConstruct
-    private void firstUser() {
-        User user = new User("admin2","admin2", "123456","q@qq.q",33);
-        if (userService.getUserByLogin(user.getLogin())==null) {
-            String role[] = new String[]{"ROLE_USER", "ROLE_ADMIN"};
-            userService.add(user, role);
-        }
-    }
 }

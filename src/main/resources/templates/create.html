@@ -6,7 +6,7 @@
 </head>
 <body>
 <div align="center">
-        <form action="createUser" method="post">
+        <form action="/admin/createUser" method="post">
             <table>
                 <caption>
                     <h2>
@@ -42,8 +42,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <th> Role:</th>
+                    <td>
+                        <select multiple size="2"  name="rolesIds" th:value="*{rolesIds}">
+                                <option selected value=0>ROLE_USER</option>
+                                <option value=1>ROLE_ADMIN</option>
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2" align="center">
-                        <button formmethod="post" onclick="location.href='createUser'" ;>Save User</button>
+                        <button formmethod="post" onclick="location.href='/admin/createUser'" ;>Save User</button>
                     </td>
                 </tr>
             </table>
@@ -55,17 +65,17 @@
         <caption><h2>Admin Actions</h2></caption>
         <tr>
             <th align="left">
-                <form action="admin" method="get">
+                <form action="/admin" method="get">
                     <button name="" value="">List All Users</button>
                 </form>
             </th>
             <th align="left">
-                <form action="create" method="post">
+                <form action="/admin/create" method="post">
                     <button name="" value="">Add New User</button>
                 </form>
             </th>
             <th align="left">
-                <form action="logout" method="post">
+                <form action="/logout" method="post">
                     <button name="" value="">Logout</button>
                 </form>
             </th>

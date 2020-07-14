@@ -19,12 +19,12 @@ public class Role implements GrantedAuthority {
     @ManyToMany(mappedBy = "roles")
     private Set<User> userSet;
 
+    public Role() {
+    }
+
     @Override
     public String getAuthority() {
         return getName();
-    }
-
-    public Role() {
     }
 
     public Role(String name) { this.name = name; }

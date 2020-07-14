@@ -17,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private UserController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -25,10 +25,8 @@ public class UserController {
     private String listUsers(ModelMap model) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getUserByLogin(userName);
-        List<User> listUser = new ArrayList<>();
-        listUser.add(user);
-        model.addAttribute("role", "USER");
-        model.addAttribute("userList", listUser);
+        model.addAttribute("user", user);
         return "userPage";
     }
+
 }

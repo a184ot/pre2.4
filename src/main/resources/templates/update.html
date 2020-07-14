@@ -6,7 +6,7 @@
 </head>
 <body>
 <div align="center">
-    <form action="updateUser" method="post" th:object="${user}">
+    <form action="/admin/updateUser" method="post" th:object="${user}">
             <table>
                 <caption>
                     <h2>
@@ -47,7 +47,7 @@
                 <tr>
                     <th>Role:</th>
                     <td>
-                        <select th:field="*{role}" multiple>
+                        <select name="rolesIds" th:field="*{role}" multiple>
                             <option th:each="role : ${rolesuser}"
                                     th:value="${role}"
                                     th:text="${role}"></option>
@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <button onclick="location.href='updateUser'" ;>Save User</button>
+                        <button onclick="location.href='/admin/updateUser'" ;>Save User</button>
                     </td>
                 </tr>
             </table>
@@ -68,17 +68,17 @@
         <caption><h2>Admin Actions</h2></caption>
         <tr>
             <th align="left">
-                <form action="admin" method="get">
+                <form action="/admin" method="get">
                     <button>List All Users</button>
                 </form>
             </th>
             <th align="left">
-                <form action="create" method="post">
+                <form action="/admin/create" method="post">
                     <button>Add New User</button>
                 </form>
             </th>
             <th align="left">
-                <form action="logout" method="post">
+                <form action="/logout" method="post">
                     <button>Logout</button>
                 </form>
             </th>

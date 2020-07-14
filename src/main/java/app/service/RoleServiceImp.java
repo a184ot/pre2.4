@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class RoleServiceImp implements RoleService {
 
-    RoleDao roleDao;
+    private RoleDao roleDao;
 
     @Autowired
     public RoleServiceImp(RoleDao roleDao) {

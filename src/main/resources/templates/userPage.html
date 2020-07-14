@@ -17,7 +17,7 @@
             <th>Age</th>
             <th>Role</th>
         </tr>
-        <tr th:each="user : ${userList}">
+        <tr>
             <td th:utext="${user.id}"></td>
             <td th:utext="${user.viewName}"></td>
             <td th:utext="${user.login}"></td>
@@ -38,16 +38,16 @@
         <caption><h2>Actions</h2></caption>
         <tr>
             <th align="left">
-                <form action="admin" method="get">
+                <form action="/admin" method="get">
                     <button>List All Users</button>
                 </form>
             </th>
             <th align="left">
-                <form action="admin" method="get">
+                <form action="/admin" method="get">
                     <button>Admin</button>
                 </form>
             <th align="left">
-                <form action="logout" method="post">
+                <form action="/logout" method="post">
                     <button>Logout</button>
                 </form>
             </th>
