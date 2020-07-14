@@ -14,9 +14,9 @@
 <body>
 
 <nav class="navbar navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1"><b th:utext="${userList.getEmail()}"></b>
+    <span class="navbar-brand mb-0 h1"><b th:utext="${user.getEmail()}"></b>
             <span class="text-white">User with roles:
-        <span th:each="role : ${userList.getRole()}">
+        <span th:each="role : ${user.getRole()}">
                     <span th:if="${role.toString() == 'ROLE_USER'}">USER</span>
                     <span th:if="${role.toString() == 'ROLE_ADMIN'}">ADMIN</span>
         </span></span></span></span>

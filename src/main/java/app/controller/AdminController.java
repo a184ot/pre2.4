@@ -39,21 +39,21 @@ public class AdminController {
         return "all-users";
     }
 
-    @PostMapping({"delete","admin/delete"})
+    @PostMapping("admin/delete")
     private String  deleteUser(@ModelAttribute("id") Long id, Model model) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }
 
 
-    @PostMapping(value = "/admin/updateUser")
+    @PostMapping("/admin/updateUser")
     private String updateUser (User user) {
         user.setRole(getRoleFromResivedUser(user));
         userService.editUser(user);
         return "redirect:/admin";
     }
 
-    @PostMapping({"/createUser", "admin/createUser"})
+    @PostMapping("admin/createUser")
     private String createNewUser(User user) {
         user.setRole(getRoleFromResivedUser(user));
         userService.add(user);
