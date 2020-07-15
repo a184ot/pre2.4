@@ -21,13 +21,14 @@ public class AdminController {
 
     private UserService userService;
 
-    @Autowired
-    public AdminController(UserService userService) {
-        this.userService = userService;
-    }
+    private RoleService roleService;
 
     @Autowired
-    RoleService roleService;
+    private AdminController(UserService userService, RoleService roleService) {
+        this.userService = userService;
+        this.roleService = roleService;
+    }
+
 
     @GetMapping("/admin")
     private String userList(Model model) {
@@ -47,15 +48,15 @@ public class AdminController {
 
 
     @PostMapping("/admin/updateUser")
-    private String updateUser (User user) {
-        user.setRole(getRoleFromResivedUser(user));
+    private String updateUser (User user,Long[] roles) {
+        roleService.getUserRolesByRolesId(user,roles);
         userService.editUser(user);
         return "redirect:/admin";
     }
 
     @PostMapping("admin/createUser")
-    private String createNewUser(User user) {
-        user.setRole(getRoleFromResivedUser(user));
+    private String createNewUser(User user, Long[] roles) {
+        roleService.getUserRolesByRolesId(user,roles);
         userService.add(user);
         return "redirect:/admin";
     }
@@ -65,11 +66,4 @@ public class AdminController {
         return "error";
     }
 
-    private Set<Role> getRoleFromResivedUser(User user) {
-        Set<Role> roles= new HashSet<>();
-        for (Role role : user.getRole()) {
-            roles.add(roleService.getRoleByName(role.getName()));
-        }
-        return roles;
-    }
 }

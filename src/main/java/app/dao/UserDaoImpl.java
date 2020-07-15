@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UserDaoImp implements UserDao {
+public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -21,7 +21,7 @@ public class UserDaoImp implements UserDao {
     private RoleService roleService;
 
     @Autowired
-    public UserDaoImp(RoleService roleService) {
+    public UserDaoImpl(RoleService roleService) {
         this.roleService = roleService;
     }
 
