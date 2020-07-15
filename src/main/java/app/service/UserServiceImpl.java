@@ -12,18 +12,17 @@ import java.util.*;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
+    private final UserDao userDao;
+
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @Autowired
-    private RoleService roleService;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
     @Transactional
     @Override

@@ -21,13 +21,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private UserDetailsService userDetailsService;
 
-    private AuthenticationSuccessHandler authenticationSuccessHandler;
-
-    @Autowired
-    public SecurityConfig(  AuthenticationSuccessHandler authenticationSuccessHandler) {
-        this.authenticationSuccessHandler = authenticationSuccessHandler;
-    }
-
     @Autowired
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {

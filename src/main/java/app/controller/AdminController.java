@@ -19,9 +19,9 @@ import java.util.Set;
 @Controller
 public class AdminController {
 
-    private UserService userService;
+    private final UserService userService;
 
-    private RoleService roleService;
+    private final RoleService roleService;
 
     @Autowired
     private AdminController(UserService userService, RoleService roleService) {

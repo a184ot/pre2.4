@@ -15,14 +15,11 @@ public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
     PasswordEncoder passwordEncoder;
 
-    private RoleService roleService;
-
     @Autowired
-    public UserDaoImpl(RoleService roleService) {
-        this.roleService = roleService;
+    public UserDaoImpl(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
